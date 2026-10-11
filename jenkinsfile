@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'Getting the source code'
+                checkout scm
+            }
+        }
+
+    stage('Test') {
+            steps {
+                dir('syscheck') {
+                    sh 'go test ./...'
+                }
+            }
+        }
+
+        stage('Build') {
+            steps {
+                dir('syscheck') {
+                    sh 'go build -o app .'
+                }
+            }
+        }
+    }
+}
