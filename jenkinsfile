@@ -9,6 +9,7 @@ pipeline {
             }
         }
 
+
     stage('Test') {
             steps {
                 dir('syscheck') {
